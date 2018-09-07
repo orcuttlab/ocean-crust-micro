@@ -1,5 +1,3 @@
 # ocean-crust-micro
-Sequence processing details for Oceanic Crust Microbial Ecology and Biogeochemistry chapter
 
-
-Data processing steps to recreate meta analysis
+This repository outlines the sequencing processing steps used to produce the figures published in the Ocean Crust Microbial Ecology and Biogeochemical chapter.  
