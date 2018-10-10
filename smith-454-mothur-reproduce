@@ -1,0 +1,574 @@
+Mac version
+
+Using ReadLine
+
+Running 64Bit Version
+
+mothur v.1.37.6
+Last updated: 6/20/2016
+
+by
+Patrick D. Schloss
+
+Department of Microbiology & Immunology
+University of Michigan
+pschloss@umich.edu
+http://www.mothur.org
+
+When using, please cite:
+Schloss, P.D., et al., Introducing mothur: Open-source, platform-independent, community-supported software for describing and comparing microbial communities. Appl Environ Microbiol, 2009. 75(23):7537-41.
+
+Distributed under the GNU General Public License
+
+Type 'help()' for information on the commands that are available
+
+Type 'quit()' to exit program
+Interactive Mode
+
+
+Filtering Parameters for trim.seqs = qaverage=20, qwindowsize=50, minlength=150, maxhomop=8, maxambig=0
+
+
+mothur > make.group(fasta=SRR1184143_.trim.fasta-SRR1184145_.trim.fasta-SRR1184147_.trim.fasta-SRR1184149_.trim.fasta-SRR1184151_.trim.fasta-SRR1184153_.trim.fasta-SRR1184155_.trim.fasta-SRR1184157_.trim.fasta, groups=SRR1184143-SRR1184145-SRR1184147-SRR1184149-SRR1184151-SRR1184153-SRR1184155-SRR1184157)
+
+Output File Names: mergegroups
+
+
+mothur > merge.files(input=SRR1184143_.trim.fasta-SRR1184145_.trim.fasta-SRR1184147_.trim.fasta-SRR1184149_.trim.fasta-SRR1184151_.trim.fasta-SRR1184153_.trim.fasta-SRR1184155_.trim.fasta-SRR1184157_.trim.fasta, output=smith.bac.all.fasta)
+
+Output File Names: 
+smith.bac.all.fasta
+
+
+mothur > count.groups(group=mergegroups)
+SRR1184143 contains 19048.
+SRR1184145 contains 18043.
+SRR1184147 contains 19025.
+SRR1184149 contains 22465.
+SRR1184151 contains 12458.
+SRR1184153 contains 21349.
+SRR1184155 contains 13631.
+SRR1184157 contains 19557.
+
+Total seqs: 145576.
+
+Output File Names: 
+mergegroupscount.summary
+
+
+mothur > summary.seqs(fasta=smith.bac.all.fasta)
+
+Using 1 processors.
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	153	153	0	3	1
+2.5%-tile:	1	529	529	0	4	3640
+25%-tile:	1	546	546	0	5	36395
+Median: 	1	559	559	0	5	72789
+75%-tile:	1	568	568	0	6	109183
+97.5%-tile:	1	602	602	0	6	141937
+Maximum:	1	702	702	0	8	145576
+Mean:	1	558.678	558.678	0	5.28145
+# of Seqs:	145576
+
+Output File Names: 
+smith.bac.all.summary
+
+It took 5 secs to summarize 145576 sequences.
+
+mothur > unique.seqs(fasta=current)
+Using smith.bac.all.fasta as input file for the fasta parameter.
+145576	137952
+
+Output File Names: 
+smith.bac.all.names
+smith.bac.all.unique.fasta
+
+
+mothur > summary.seqs(fasta=current, name=current)
+Using smith.bac.all.unique.fasta as input file for the fasta parameter.
+Using smith.bac.all.names as input file for the name parameter.
+
+Using 1 processors.
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	153	153	0	3	1
+2.5%-tile:	1	529	529	0	4	3640
+25%-tile:	1	546	546	0	5	36395
+Median: 	1	559	559	0	5	72789
+75%-tile:	1	568	568	0	6	109183
+97.5%-tile:	1	602	602	0	6	141937
+Maximum:	1	702	702	0	8	145576
+Mean:	1	558.678	558.678	0	5.28145
+# of unique seqs:	137952
+total # of seqs:	145576
+
+Output File Names: 
+smith.bac.all.unique.summary
+
+It took 5 secs to summarize 145576 sequences.
+
+mothur > count.groups()
+Using mergegroups as input file for the group parameter.
+SRR1184143 contains 19048.
+SRR1184145 contains 18043.
+SRR1184147 contains 19025.
+SRR1184149 contains 22465.
+SRR1184151 contains 12458.
+SRR1184153 contains 21349.
+SRR1184155 contains 13631.
+SRR1184157 contains 19557.
+
+Total seqs: 145576.
+
+Output File Names: 
+mergegroupscount.summary
+
+
+mothur > 
+[ERROR]: You are missing (
+Invalid.
+
+mothur > align.seqs(fasta=smith.bac.all.unique.fasta,  reference=~/Desktop/Silva.nr_v132/silva.nr_v132.align, flip = T, processors=8)
+
+Using 8 processors.
+
+Reading in the ~/Desktop/Silva.nr_v132/silva.nr_v132.align template sequences...	DONE.
+It took 329 to read  213119 sequences.
+Aligning sequences from smith.bac.all.unique.fasta ...
+Some of your sequences generated alignments that eliminated too many bases, a list is provided in smith.bac.all.unique.flip.accnos. If the reverse compliment proved to be better it was reported.
+It took 5175 secs to align 137952 sequences.
+
+
+Output File Names: 
+smith.bac.all.unique.align
+smith.bac.all.unique.align.report
+smith.bac.all.unique.flip.accnos
+
+
+mothur > summary.seqs(fasta=current, name=current)
+
+quitting command...
+Using smith.bac.all.unique.align as input file for the fasta parameter.
+Using smith.bac.all.names as input file for the name parameter.
+
+Using 8 processors.
+
+mothur > summary.seqs(fasta=current, name=current, processors=8))
+Using smith.bac.all.unique.align as input file for the fasta parameter.
+Using smith.bac.all.names as input file for the name parameter.
+
+Using 8) processors.
+[ERROR]: cannot convert 8) to an integer.
+[ERROR]: did not complete summary.seqs.
+
+mothur > summary.seqs(fasta=current, name=current, processors=8)
+Using smith.bac.all.unique.align as input file for the fasta parameter.
+Using smith.bac.all.names as input file for the name parameter.
+
+Using 8 processors.
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	0	0	0	0	1	1
+2.5%-tile:	10222	34333	529	0	4	3640
+25%-tile:	10368	34334	546	0	5	36395
+Median: 	11897	34334	559	0	5	72789
+75%-tile:	13152	34334	568	0	6	109183
+97.5%-tile:	13883	34336	602	0	6	141937
+Maximum:	43116	43116	702	0	8	145576
+Mean:	12186.1	34325.2	558.313	0	5.27913
+# of unique seqs:	137952
+total # of seqs:	145576
+
+Output File Names: 
+smith.bac.all.unique.summary
+
+It took 94 secs to summarize 145576 sequences.
+
+mothur > get.current()
+
+Current RAM usage: 8.1671 Gigabytes. Total Ram: 16 Gigabytes.
+
+Current files saved by mothur:
+fasta=smith.bac.all.unique.align
+group=mergegroups
+name=smith.bac.all.names
+processors=8
+summary=smith.bac.all.unique.summary
+
+Current default directory saved by mothur: /Users/tdangelo/mothur/
+
+Current working directory: /Users/tdangelo/Desktop/Ocean-Crust-Synthesis/SRP039455/
+
+Output File Names: 
+current_files.summary
+
+
+mothur > screen.seqs(fasta=current, group=current, name=current, start=13883, end=34336, optimize=end, criteria=95)
+Using smith.bac.all.unique.align as input file for the fasta parameter.
+Using mergegroups as input file for the group parameter.
+Using smith.bac.all.names as input file for the name parameter.
+
+Using 8 processors.
+Optimizing end to 34333.
+
+Output File Names: 
+smith.bac.all.unique.good.align
+smith.bac.all.unique.bad.accnos
+smith.bac.all.good.names
+mergegroupsgood
+
+
+It took 234 secs to screen 137952 sequences.
+
+mothur > filter.seqs(fasta=current, vertical=T, trump=.)
+Using smith.bac.all.unique.good.align as input file for the fasta parameter.
+
+Using 8 processors.
+Creating Filter... 
+
+
+Running Filter... 
+
+
+
+Length of filtered alignment: 1258
+Number of columns removed: 48742
+Length of the original alignment: 50000
+Number of sequences used to construct filter: 134505
+
+Output File Names: 
+smith.filter
+smith.bac.all.unique.good.filter.fasta
+
+
+mothur > unique.seqs(fasta=current, name=current)
+Using smith.bac.all.unique.good.filter.fasta as input file for the fasta parameter.
+Using smith.bac.all.good.names as input file for the name parameter.
+134505	123296
+
+Output File Names: 
+smith.bac.all.unique.good.filter.names
+smith.bac.all.unique.good.filter.unique.fasta
+
+
+mothur > pre.cluster(fasta=current, name=current, group=current, diffs=2)
+Using smith.bac.all.unique.good.filter.unique.fasta as input file for the fasta parameter.
+Using mergegroupsgood as input file for the group parameter.
+Using smith.bac.all.unique.good.filter.names as input file for the name parameter.
+
+Using 8 processors.
+
+
+Using 8 processors.
+
+
+Using 8 processors.
+
+Processing group SRR1184151:
+Processing group SRR1184145:
+
+Using 8 processors.
+
+Processing group SRR1184149:
+Processing group SRR1184147:
+
+Using 8 processors.
+
+Processing group SRR1184153:
+
+Using 8 processors.
+
+Processing group SRR1184155:
+
+Using 8 processors.
+
+Processing group SRR1184143:
+
+Using 8 processors.
+
+Processing group SRR1184157:
+11111	8835	2276
+Total number of sequences before pre.cluster was 11111.
+pre.cluster removed 2276 sequences.
+
+It took 123 secs to cluster 11111 sequences.
+12028	9648	2380
+Total number of sequences before pre.cluster was 12028.
+pre.cluster removed 2380 sequences.
+
+It took 148 secs to cluster 12028 sequences.
+15481	10980	4501
+Total number of sequences before pre.cluster was 15481.
+pre.cluster removed 4501 sequences.
+
+It took 192 secs to cluster 15481 sequences.
+15903	11506	4397
+Total number of sequences before pre.cluster was 15903.
+pre.cluster removed 4397 sequences.
+
+It took 197 secs to cluster 15903 sequences.
+15471	12466	3005
+Total number of sequences before pre.cluster was 15471.
+pre.cluster removed 3005 sequences.
+
+15904	12674	3230
+Total number of sequences before pre.cluster was 15904.
+pre.cluster removed 3230 sequences.
+
+It took 210 secs to cluster 15471 sequences.
+It took 210 secs to cluster 15904 sequences.
+17821	13918	3903
+Total number of sequences before pre.cluster was 17821.
+pre.cluster removed 3903 sequences.
+
+It took 235 secs to cluster 17821 sequences.
+19577	15025	4552
+Total number of sequences before pre.cluster was 19577.
+pre.cluster removed 4552 sequences.
+
+It took 245 secs to cluster 19577 sequences.
+
+/******************************************/
+Running command: unique.seqs(fasta=smith.bac.all.unique.good.filter.unique.precluster.fasta, name=smith.bac.all.unique.good.filter.unique.precluster.names)
+95052	95052
+
+Output File Names: 
+smith.bac.all.unique.good.filter.unique.precluster.unique.names
+smith.bac.all.unique.good.filter.unique.precluster.unique.fasta
+
+/******************************************/
+It took 263 secs to run pre.cluster.
+
+Output File Names: 
+smith.bac.all.unique.good.filter.unique.precluster.fasta
+smith.bac.all.unique.good.filter.unique.precluster.names
+smith.bac.all.unique.good.filter.unique.precluster.SRR1184143.map
+smith.bac.all.unique.good.filter.unique.precluster.SRR1184145.map
+smith.bac.all.unique.good.filter.unique.precluster.SRR1184147.map
+smith.bac.all.unique.good.filter.unique.precluster.SRR1184149.map
+smith.bac.all.unique.good.filter.unique.precluster.SRR1184151.map
+smith.bac.all.unique.good.filter.unique.precluster.SRR1184153.map
+smith.bac.all.unique.good.filter.unique.precluster.SRR1184155.map
+smith.bac.all.unique.good.filter.unique.precluster.SRR1184157.map
+
+
+mothur > summary.seqs(fasta=current, name=current)
+Using smith.bac.all.unique.good.filter.unique.precluster.fasta as input file for the fasta parameter.
+Using smith.bac.all.unique.good.filter.unique.precluster.names as input file for the name parameter.
+
+Using 8 processors.
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	1258	488	0	4	1
+2.5%-tile:	1	1258	524	0	4	3552
+25%-tile:	1	1258	528	0	5	35514
+Median: 	1	1258	530	0	5	71028
+75%-tile:	1	1258	533	0	6	106541
+97.5%-tile:	1	1258	543	0	6	138503
+Maximum:	9	1258	576	0	8	142054
+Mean:	1.02823	1258	530.952	0	5.22125
+# of unique seqs:	95052
+total # of seqs:	142054
+
+Output File Names: 
+smith.bac.all.unique.good.filter.unique.precluster.summary
+
+It took 3 secs to summarize 142054 sequences.
+
+mothur > chimera.uchime(fasta=current, name=current, group=current)
+Using smith.bac.all.unique.good.filter.unique.precluster.fasta as input file for the fasta parameter.
+Using mergegroupsgood as input file for the group parameter.
+Using smith.bac.all.unique.good.filter.unique.precluster.names as input file for the name parameter.
+
+Using 8 processors.
+
+uchime by Robert C. Edgar
+http://drive5.com/uchime
+This code is donated to the public domain.
+
+Checking sequences from smith.bac.all.unique.good.filter.unique.precluster.fasta ...
+
+It took 4060 secs to check 8835 sequences from group SRR1184151.
+
+It took 5622 secs to check 9648 sequences from group SRR1184155.
+57499 here
+
+It took 7232 secs to check 10980 sequences from group SRR1184143.
+
+It took 7357 secs to check 12674 sequences from group SRR1184147.
+
+It took 7436 secs to check 12466 sequences from group SRR1184145.
+
+It took 7694 secs to check 11506 sequences from group SRR1184157.
+
+It took 8207 secs to check 13918 sequences from group SRR1184153.
+
+It took 8433 secs to check 15025 sequences from group SRR1184149.
+
+It took 8440 secs to check 95052 sequences. 174 chimeras were found.
+The number of sequences checked may be larger than the number of unique sequences because some sequences are found in several samples.
+
+Output File Names: 
+smith.bac.all.unique.good.filter.unique.precluster.denovo.uchime.chimeras
+smith.bac.all.unique.good.filter.unique.precluster.denovo.uchime.accnos
+
+
+mothur > remove.seqs(accnos=current, fasta=current, name=current, group=current, dups=T)
+Using smith.bac.all.unique.good.filter.unique.precluster.denovo.uchime.accnos as input file for the accnos parameter.
+Using smith.bac.all.unique.good.filter.unique.precluster.fasta as input file for the fasta parameter.
+Using mergegroupsgood as input file for the group parameter.
+Using smith.bac.all.unique.good.filter.unique.precluster.names as input file for the name parameter.
+Removed 180 sequences from your name file.
+Removed 174 sequences from your fasta file.
+Removed 180 sequences from your group file.
+
+Output File Names: 
+smith.bac.all.unique.good.filter.unique.precluster.pick.names
+smith.bac.all.unique.good.filter.unique.precluster.pick.fasta
+mergegroupsgoodpick
+
+
+mothur > summary.seqs(fasta=current, name=current)
+Using smith.bac.all.unique.good.filter.unique.precluster.pick.fasta as input file for the fasta parameter.
+Using smith.bac.all.unique.good.filter.unique.precluster.pick.names as input file for the name parameter.
+
+Using 8 processors.
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	1258	488	0	4	1
+2.5%-tile:	1	1258	524	0	4	3547
+25%-tile:	1	1258	528	0	5	35469
+Median: 	1	1258	530	0	5	70938
+75%-tile:	1	1258	533	0	6	106406
+97.5%-tile:	1	1258	543	0	6	138328
+Maximum:	9	1258	576	0	8	141874
+Mean:	1.02826	1258	530.952	0	5.22151
+# of unique seqs:	94878
+total # of seqs:	141874
+
+Output File Names: 
+smith.bac.all.unique.good.filter.unique.precluster.pick.summary
+
+It took 2 secs to summarize 141874 sequences.
+
+mothur > remove.seqs(accnos=current, fasta=current, name=current, group=current, dups=T)
+Using smith.bac.all.unique.good.filter.unique.precluster.denovo.uchime.accnos as input file for the accnos parameter.
+Using smith.bac.all.unique.good.filter.unique.precluster.pick.fasta as input file for the fasta parameter.
+Using mergegroupsgoodpick as input file for the group parameter.
+Using smith.bac.all.unique.good.filter.unique.precluster.pick.names as input file for the name parameter.
+Removed 0 sequences from your name file.
+Removed 0 sequences from your fasta file.
+Removed 0 sequences from your group file.
+
+Output File Names: 
+smith.bac.all.unique.good.filter.unique.precluster.pick.pick.names
+smith.bac.all.unique.good.filter.unique.precluster.pick.pick.fasta
+mergegroupsgoodpickpick
+
+
+mothur > classify.seqs(fasta=smith.bac.all.unique.good.filter.unique.precluster.pick.pick.fasta, reference=~/Desktop/Silva.nr_v132/silva.nr_v132.align, taxonomy=~/Desktop/Silva.nr_v132/silva.nr_v132.tax, cutoff=80, processors=8)
+
+Using 8 processors.
+Reading template taxonomy...     DONE.
+Reading template probabilities...     DONE.
+It took 24 seconds get probabilities. 
+Classifying sequences from smith.bac.all.unique.good.filter.unique.precluster.pick.pick.fasta ...
+[WARNING]: SRR1184151.10392 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: SRR1184149.5272 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: SRR1184143.2158 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: SRR1184151.8276 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: SRR1184151.7944 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: SRR1184151.584 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: SRR1184151.4996 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: SRR1184151.232 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: SRR1184149.17127 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: SRR1184151.11700 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+
+It took 6133 secs to classify 94878 sequences.
+
+
+It took 3 secs to create the summary file for 94878 sequences.
+
+
+Output File Names: 
+smith.bac.all.unique.good.filter.unique.precluster.pick.pick.nr_v132.wang.taxonomy
+smith.bac.all.unique.good.filter.unique.precluster.pick.pick.nr_v132.wang.tax.summary
+
+
+mothur > dist.seqs(fasta=current, cutoff=0.15, processors=8)
+Using smith.bac.all.unique.good.filter.unique.precluster.pick.pick.fasta as input file for the fasta parameter.
+
+Using 8 processors.
+
+Output File Names: 
+smith.bac.all.unique.good.filter.unique.precluster.pick.pick.dist
+
+It took 64514 seconds to calculate the distances for 94878 sequences.
+
+
+
+mothur > cluster(column=current, name=smith.bac.all.unique.good.filter.unique.precluster.pick.pick.names)
+Using smith.bac.all.unique.good.filter.unique.precluster.pick.pick.dist as input file for the column parameter.
+********************#****#****#****#****#****#****#****#****#****#****#
+Reading matrix:     |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+***********************************************************************
+changed cutoff to 0.0701001
+It took 164368 seconds to cluster
+
+Output File Names: 
+smith.bac.all.unique.good.filter.unique.precluster.pick.pick.an.sabund
+smith.bac.all.unique.good.filter.unique.precluster.pick.pick.an.rabund
+smith.bac.all.unique.good.filter.unique.precluster.pick.pick.an.list
+
+
+mothur > make.shared(list=current, group=mergegroupsgoodpickpick, label=0.03)
+Using smith.bac.all.unique.good.filter.unique.precluster.pick.pick.an.list as input file for the list parameter.
+0.03
+
+Output File Names: 
+smith.bac.all.unique.good.filter.unique.precluster.pick.pick.an.shared
+
+
+mothur > get.oturep()
+You have no current list file and the list parameter is required.
+No valid current files. You must provide a phylip or column file before you can use the get.oturep command.
+[ERROR]: did not complete get.oturep.
+
+mothur > get.oturep(label=0.03, list=smith.bac.all.unique.good.filter.unique.precluster.pick.pick.an.list, name=smith.bac.all.unique.good.filter.unique.precluster.pick.pick.names, column=smith.bac.all.unique.good.filter.unique.precluster.pick.pick.dist, fasta=smith.bac.all.unique.good.filter.unique.precluster.pick.pick.fasta, group=mergegroupsgoodpickpick)
+********************#****#****#****#****#****#****#****#****#****#****#
+Reading matrix:     |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+***********************************************************************
+0.03	26732
+
+Output File Names: 
+smith.bac.all.unique.good.filter.unique.precluster.pick.pick.an.0.03.rep.names
+smith.bac.all.unique.good.filter.unique.precluster.pick.pick.an.0.03.rep.fasta
+
+
+mothur > classify.seqs(fasta=smith.bac.all.unique.good.filter.unique.precluster.pick.pick.an.0.03.rep.fasta, template=~/Desktop/Silva.nr_v132/silva.nr_v132.align, taxonomy=~/Desktop/Silva.nr_v132/silva.nr_v132.tax, cutoff=80)
+
+Using 1 processors.
+[WARNING]: This command can take a namefile and you did not provide one. The current namefile is smith.bac.all.unique.good.filter.unique.precluster.pick.pick.an.0.03.rep.names which seems to match smith.bac.all.unique.good.filter.unique.precluster.pick.pick.an.0.03.rep.fasta.
+Reading template taxonomy...     DONE.
+Reading template probabilities...     DONE.
+It took 23 seconds get probabilities. 
+Classifying sequences from smith.bac.all.unique.good.filter.unique.precluster.pick.pick.an.0.03.rep.fasta ...
+[WARNING]: SRR1184151.11700 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: SRR1184151.13257 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: SRR1184151.232 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: SRR1184143.7043 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: SRR1184151.8276 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: SRR1184149.17127 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: SRR1184149.5272 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+
+It took 2675 secs to classify 26732 sequences.
+
+
+It took 1 secs to create the summary file for 26732 sequences.
+
+
+Output File Names: 
+smith.bac.all.unique.good.filter.unique.precluster.pick.pick.an.0.03.rep.nr_v132.wang.taxonomy
+smith.bac.all.unique.good.filter.unique.precluster.pick.pick.an.0.03.rep.nr_v132.wang.tax.summary
+
