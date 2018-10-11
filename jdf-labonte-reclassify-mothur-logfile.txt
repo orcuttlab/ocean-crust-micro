@@ -1,0 +1,82 @@
+Mac version
+
+Using ReadLine
+
+Running 64Bit Version
+
+mothur v.1.37.6
+Last updated: 6/20/2016
+
+by
+Patrick D. Schloss
+
+Department of Microbiology & Immunology
+University of Michigan
+pschloss@umich.edu
+http://www.mothur.org
+
+When using, please cite:
+Schloss, P.D., et al., Introducing mothur: Open-source, platform-independent, community-supported software for describing and comparing microbial communities. Appl Environ Microbiol, 2009. 75(23):7537-41.
+
+Distributed under the GNU General Public License
+
+Type 'help()' for information on the commands that are available
+
+Type 'quit()' to exit program
+Interactive Mode
+
+
+mothur > classify.seqs(fasta=JdF_OTUs.fasta, reference=~/Desktop/Silva.nr_v132/silva.nr_v132.align, taxonomy=~/Desktop/Silva.nr_v132/silva.nr_v132.tax, cutoff=80)
+
+Using 1 processors.
+Generating search database...    DONE.
+It took 470 seconds generate search database. 
+
+Reading in the ~/Desktop/Silva.nr_v132/silva.nr_v132.tax taxonomy...	DONE.
+Calculating template taxonomy tree...     DONE.
+Calculating template probabilities...     DONE.
+It took 616 seconds get probabilities. 
+Classifying sequences from JdF_OTUs.fasta ...
+[WARNING]: G9X3T4V01CCVIK could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01ECFLI could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: HJ4ML1W02IQHMD could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: HJ4ML1W02GU3TB could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: HJ4ML1W02H9UJK could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: HJ4ML1W02FPUA5 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: HJ4ML1W02FOT9K could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01BOPYX could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01BL2DB could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01D7N84 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01BO8EN could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01C8BPZ could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01A7LE8 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01C8T5Y could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01DR791 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01ED8FS could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01BRK2I could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01AR347 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01BA7IS could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01EWY1P could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01DH8LW could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01BNT4N could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01A7F53 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: G9X3T4V01D0JNZ could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: HJ4ML1W02HZ294 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: HJ4ML1W02GH3PP could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: HJ4ML1W02G78O3 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: HJ4ML1W02FGBMX could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: HJ4ML1W02G0FB6 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+
+[WARNING]: mothur reversed some your sequences for a better classification.  If you would like to take a closer look, please check JdF_OTUs.nr_v132.wang.flip.accnos for the list of the sequences.
+
+It took 81 secs to classify 1394 sequences.
+
+
+It took 0 secs to create the summary file for 1394 sequences.
+
+
+Output File Names: 
+JdF_OTUs.nr_v132.wang.taxonomy
+JdF_OTUs.nr_v132.wang.tax.summary
+JdF_OTUs.nr_v132.wang.flip.accnos
+
