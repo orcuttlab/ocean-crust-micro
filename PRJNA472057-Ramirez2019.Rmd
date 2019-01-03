@@ -1,0 +1,159 @@
+---
+title: "PRJNA472057 Ramirez JDF 2019"
+author: "Tim D'Angelo"
+date: "12/19/2018"
+output:
+  html_document:
+    df_print: paged
+  md_document:
+    variant: markdown_github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ShortRead)
+library(dada2)
+library(phyloseq)
+```
+
+```{r}
+setwd("~/Desktop/Ocean-Crust-Synthesis/GUS_JDF/")
+```
+
+```{r}
+path <- "~/Desktop/Ocean-Crust-Synthesis/GUS_JDF"
+list.files(path)
+```
+
+```{r}
+# Sort ensures forward/reverse reads are in same order
+fnFs <- sort(list.files(path, pattern="_R1.fastq"))
+fnRs <- sort(list.files(path, pattern="_R2.fastq"))
+# Extract sample names, assuming filenames have format: SAMPLENAME_XXX.fastq
+sample.names <- sapply(strsplit(fnFs, "_"), `[`, 1)
+# Specify the full path to the fnFs and fnRs
+fnFs <- file.path(path, fnFs)
+fnRs <- file.path(path, fnRs)
+sample.names
+```
+
+```{r}
+filt_path <- file.path(path, "filtered") # Place filtered files in filtered/ subdirectory
+filtFs <- file.path(filt_path, paste0(sample.names, "_F_filt.fastq.gz"))
+filtRs <- file.path(filt_path, paste0(sample.names, "_R_filt.fastq.gz"))
+```
+
+```{r}
+plotQualityProfile(fnFs[1:2])
+```
+```{r}
+plotQualityProfile(fnRs[1:2])
+```
+
+
+```{r}
+out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(200,180), trimLeft = 20,
+              maxN=0, maxEE=c(2,2), truncQ=2, rm.phix=TRUE,
+              compress=TRUE, multithread=TRUE) # On Windows set multithread=FALSE
+head(out)
+```
+
+
+```{r}
+errF1 <- learnErrors(filtFs, multithread=TRUE)
+errR1 <- learnErrors(filtRs, multithread=TRUE)
+```
+
+
+```{r}
+plotErrors(errF1, nominalQ=TRUE)
+```
+
+
+```{r}
+plotErrors(errR1, nominalQ=TRUE)
+```
+
+```{r}
+derepFs <- derepFastq(filtFs, verbose=TRUE)
+derepRs <- derepFastq(filtRs, verbose=TRUE)
+# Name the derep-class objects by the sample names
+names(derepFs) <- sample.names
+names(derepRs) <- sample.names
+```
+
+```{r}
+dadaFs <- dada(derepFs, err=errF1, multithread=TRUE)
+dadaRs <- dada(derepRs, err=errR1, multithread=TRUE)
+```
+
+```{r}
+mergers <- mergePairs(dadaFs, derepFs, dadaRs, derepRs, verbose=TRUE)
+# Inspect the merger data.frame from the first sample
+head(mergers[[1]])
+```
+
+
+```{r}
+seqtab <- makeSequenceTable(mergers)
+dim(seqtab)
+table(nchar(getSequences(seqtab)))
+```
+
+```{r}
+seqtab2 <- seqtab[,nchar(colnames(seqtab)) %in% seq(300,328)]
+dim(seqtab2)
+```
+
+
+```{r}
+seqtab.nochim <- removeBimeraDenovo(seqtab, method="consensus", multithread=TRUE, verbose=TRUE)
+dim(seqtab.nochim)
+```
+
+
+```{r}
+sum(seqtab.nochim)/sum(seqtab)
+```
+
+
+```{r}
+taxa <- assignTaxonomy(seqtab.nochim, "~/Desktop/silva_nr_v132_train_set.fa.gz", multithread=TRUE)
+```
+
+
+```{r}
+saveRDS(taxa, file = "gus_taxa")
+```
+
+```{r}
+saveRDS(seqtab.nochim, file = "gus_trim_seqtab")
+```
+
+```{r}
+gus_seqtab <-  readRDS(file="~/Desktop/Ocean-Crust-Synthesis/GUS_JDF/gus_trim_seqtab")
+gus_taxa <-readRDS(file="~/Desktop/Ocean-Crust-Synthesis/GUS_JDF/gus_taxa")
+```
+
+```{r}
+gus_ps <- phyloseq(otu_table(gus_seqtab, taxa_are_rows=FALSE), 
+               tax_table(gus_taxa))
+gus_ps
+```
+
+```{r}
+colnames(tax_table(gus_ps)) <- c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus")
+```
+
+Removing obvious, high-count contaminant ASVs
+```{r}
+gus_ps2 <- subset_taxa(gus_ps, Order != "Propionibacteriales")
+gus_ps2
+```
+
+```{r}
+saveRDS(gus_ps2, file = "~/Desktop/Ocean-Crust-Synthesis/GUS_JDF/gus_ps")
+```
